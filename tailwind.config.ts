@@ -25,18 +25,20 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#0EA5E9",
-          light: "#33C3F0",
-          dark: "#0284C7",
+          DEFAULT: "#1A237E", // Bleu foncé ASF
+          light: "#303F9F",
+          dark: "#0D47A1",
           foreground: "#FFFFFF",
         },
         secondary: {
-          DEFAULT: "#F2FCE2",
-          foreground: "#1A1A1A",
+          DEFAULT: "#4CAF50", // Vert ASF
+          light: "#66BB6A",
+          dark: "#388E3C",
+          foreground: "#FFFFFF",
         },
         neutral: {
-          DEFAULT: "#F1F0FB",
-          dark: "#8E9196",
+          DEFAULT: "#F5F5F5",
+          dark: "#757575",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
