@@ -9,6 +9,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
 
 interface BackProjectModalProps {
   isOpen: boolean;
@@ -18,11 +26,18 @@ interface BackProjectModalProps {
 
 const BackProjectModal = ({ isOpen, onClose, projectTitle }: BackProjectModalProps) => {
   const [amount, setAmount] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!paymentMethod) {
+      toast.error("Veuillez sélectionner un mode de paiement");
+      return;
+    }
+
     // Ici nous ajouterons plus tard la logique de paiement
-    toast.success("Merci pour votre soutien !");
+    toast.success(`Merci pour votre soutien ! Vous serez redirigé vers ${paymentMethod} pour finaliser le paiement.`);
     onClose();
   };
 
@@ -35,11 +50,9 @@ const BackProjectModal = ({ isOpen, onClose, projectTitle }: BackProjectModalPro
             Vous allez soutenir le projet : {projectTitle}
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="amount" className="block text-sm font-medium text-gray-700">
-              Montant (DA)
-            </label>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="amount">Montant (DA)</Label>
             <Input
               id="amount"
               type="number"
@@ -48,11 +61,42 @@ const BackProjectModal = ({ isOpen, onClose, projectTitle }: BackProjectModalPro
               placeholder="5000"
               min="1"
               required
-              className="mt-1"
             />
           </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="payment-method">Mode de paiement</Label>
+            <Select
+              value={paymentMethod}
+              onValueChange={setPaymentMethod}
+              required
+            >
+              <SelectTrigger id="payment-method">
+                <SelectValue placeholder="Sélectionnez un mode de paiement" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="cib">
+                  Carte CIB
+                </SelectItem>
+                <SelectItem value="dahabiya">
+                  Carte Dahabiya
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {paymentMethod && (
+            <div className="rounded-lg bg-muted p-4">
+              <p className="text-sm text-muted-foreground">
+                {paymentMethod === 'cib' ? 
+                  "Vous serez redirigé vers la plateforme de paiement CIB pour finaliser votre transaction en toute sécurité." :
+                  "Vous serez redirigé vers la plateforme Dahabiya pour finaliser votre transaction en toute sécurité."}
+              </p>
+            </div>
+          )}
+
           <div className="flex justify-end space-x-2">
-            <Button variant="outline" onClick={onClose}>
+            <Button variant="outline" onClick={onClose} type="button">
               Annuler
             </Button>
             <Button type="submit">
