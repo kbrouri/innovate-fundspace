@@ -2,6 +2,30 @@ import { ArrowRight, Users, TrendingUp, Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
+// Données mockées pour l'exemple
+const featuredProjects = [
+  {
+    id: "1",
+    title: "Projet Innovation Durable",
+    description: "Une solution innovante pour un avenir durable en Algérie.",
+    category: "Énergies Renouvelables",
+    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b",
+    progress: 50,
+    currentAmount: 2500000,
+    goalAmount: 5000000,
+  },
+  {
+    id: "2",
+    title: "Artisanat Digital",
+    description: "Fusion entre tradition artisanale et technologie moderne.",
+    category: "Artisanat",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
+    progress: 75,
+    currentAmount: 3750000,
+    goalAmount: 5000000,
+  },
+];
+
 const Index = () => {
   const stats = [
     {
@@ -61,6 +85,50 @@ const Index = () => {
                 Explorer les projets
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Projects Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">Projets à la une</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {featuredProjects.map((project) => (
+              <Link
+                key={project.id}
+                to={`/projects/${project.id}`}
+                className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4">{project.description}</p>
+                  <div className="space-y-2">
+                    <div className="h-2 bg-gray-200 rounded-full">
+                      <div
+                        className="h-full bg-primary rounded-full"
+                        style={{ width: `${project.progress}%` }}
+                      />
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="font-medium">
+                        {project.currentAmount.toLocaleString()} DA
+                      </span>
+                      <span className="text-gray-500">
+                        {project.progress}%
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
