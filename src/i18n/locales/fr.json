@@ -1,0 +1,41 @@
+{
+  "nav": {
+    "projects": "Projets",
+    "about": "À propos",
+    "submit": "Soumettre un projet"
+  },
+  "hero": {
+    "title": "Financez l'avenir de l'Algérie",
+    "subtitle": "Rejoignez la plus grande plateforme de financement participatif dédiée aux entrepreneurs algériens.",
+    "cta": {
+      "submit": "Soumettre un projet",
+      "explore": "Explorer les projets"
+    }
+  },
+  "featured": {
+    "title": "Projets à la une",
+    "amount": "DA",
+    "backers": "contributeurs",
+    "daysLeft": "jours restants"
+  },
+  "stats": {
+    "projects": "Projets financés par an",
+    "invested": "Investis dans l'innovation",
+    "startups": "Startups accompagnées"
+  },
+  "categories": {
+    "title": "Catégories de projets",
+    "tech": {
+      "title": "Technologie",
+      "description": "Solutions numériques innovantes"
+    },
+    "craft": {
+      "title": "Artisanat",
+      "description": "Savoir-faire traditionnel"
+    },
+    "energy": {
+      "title": "Énergies Renouvelables",
+      "description": "Pour un futur durable"
+    }
+  }
+}

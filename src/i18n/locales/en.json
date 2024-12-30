@@ -1,0 +1,41 @@
+{
+  "nav": {
+    "projects": "Projects",
+    "about": "About",
+    "submit": "Submit Project"
+  },
+  "hero": {
+    "title": "Fund Algeria's Future",
+    "subtitle": "Join the largest crowdfunding platform dedicated to Algerian entrepreneurs.",
+    "cta": {
+      "submit": "Submit Project",
+      "explore": "Explore Projects"
+    }
+  },
+  "featured": {
+    "title": "Featured Projects",
+    "amount": "DZD",
+    "backers": "backers",
+    "daysLeft": "days left"
+  },
+  "stats": {
+    "projects": "Projects funded per year",
+    "invested": "Invested in innovation",
+    "startups": "Startups supported"
+  },
+  "categories": {
+    "title": "Project Categories",
+    "tech": {
+      "title": "Technology",
+      "description": "Innovative digital solutions"
+    },
+    "craft": {
+      "title": "Crafts",
+      "description": "Traditional know-how"
+    },
+    "energy": {
+      "title": "Renewable Energy",
+      "description": "For a sustainable future"
+    }
+  }
+}

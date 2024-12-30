@@ -1,17 +1,30 @@
 import { useState } from "react";
 import { Menu, X, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [language, setLanguage] = useState("FR");
+  const { t, i18n } = useTranslation();
+  const { isRTL } = useLanguage();
 
-  const toggleLanguage = () => {
-    setLanguage(language === "FR" ? "AR" : "FR");
+  const languages = [
+    { code: 'fr', label: 'FR' },
+    { code: 'ar', label: 'عربية' },
+    { code: 'en', label: 'EN' }
+  ];
+
+  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
+
+  const handleLanguageChange = () => {
+    const currentIndex = languages.findIndex(lang => lang.code === i18n.language);
+    const nextIndex = (currentIndex + 1) % languages.length;
+    i18n.changeLanguage(languages[nextIndex].code);
   };
 
   return (
-    <nav className="bg-white shadow-sm">
+    <nav className={`bg-white shadow-sm ${isRTL ? 'rtl' : 'ltr'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
@@ -23,20 +36,20 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex md:items-center md:space-x-8">
             <Link to="/projects" className="text-gray-700 hover:text-primary transition-colors">
-              Projets
+              {t('nav.projects')}
             </Link>
             <Link to="/about" className="text-gray-700 hover:text-primary transition-colors">
-              À propos
+              {t('nav.about')}
             </Link>
             <Link to="/submit-project" className="btn-primary">
-              Soumettre un projet
+              {t('nav.submit')}
             </Link>
             <button
-              onClick={toggleLanguage}
+              onClick={handleLanguageChange}
               className="flex items-center text-gray-700 hover:text-primary transition-colors"
             >
               <Globe className="w-5 h-5 mr-1" />
-              {language}
+              {currentLanguage.label}
             </button>
           </div>
 
@@ -60,23 +73,23 @@ const Navbar = () => {
               to="/projects"
               className="block px-3 py-2 text-gray-700 hover:text-primary transition-colors"
             >
-              Projets
+              {t('nav.projects')}
             </Link>
             <Link
               to="/about"
               className="block px-3 py-2 text-gray-700 hover:text-primary transition-colors"
             >
-              À propos
+              {t('nav.about')}
             </Link>
             <Link to="/submit-project" className="block px-3 py-2 btn-primary text-center mt-4">
-              Soumettre un projet
+              {t('nav.submit')}
             </Link>
             <button
-              onClick={toggleLanguage}
+              onClick={handleLanguageChange}
               className="flex items-center px-3 py-2 text-gray-700 hover:text-primary transition-colors"
             >
               <Globe className="w-5 h-5 mr-1" />
-              {language}
+              {currentLanguage.label}
             </button>
           </div>
         </div>

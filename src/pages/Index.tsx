@@ -1,6 +1,8 @@
 import { ArrowRight, Users, TrendingUp, Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Données mockées pour l'exemple
 const featuredProjects = [
@@ -36,49 +38,48 @@ const featuredProjects = [
   }
 ];
 
-// ... keep existing code (stats array definition)
-
-// ... keep existing code (categories array definition)
-
 const Index = () => {
+  const { t } = useTranslation();
+  const { isRTL } = useLanguage();
+
   const stats = [
     {
       icon: Users,
       value: "5000+",
-      label: "Projets financés par an",
+      label: t('stats.projects'),
     },
     {
       icon: TrendingUp,
       value: "100M DA",
-      label: "Investis dans l'innovation",
+      label: t('stats.invested'),
     },
     {
       icon: Rocket,
       value: "1000+",
-      label: "Startups accompagnées",
+      label: t('stats.startups'),
     },
   ];
 
   const categories = [
     {
-      title: "Technologie",
-      description: "Solutions numériques innovantes",
+      title: t('categories.tech.title'),
+      description: t('categories.tech.description'),
       image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
     },
     {
-      title: "Artisanat",
-      description: "Savoir-faire traditionnel",
+      title: t('categories.craft.title'),
+      description: t('categories.craft.description'),
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
     },
     {
-      title: "Énergies Renouvelables",
-      description: "Pour un futur durable",
+      title: t('categories.energy.title'),
+      description: t('categories.energy.description'),
       image: "https://images.unsplash.com/photo-1501854140801-50d01698950b",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className={`min-h-screen bg-white ${isRTL ? 'rtl' : 'ltr'}`}>
       <Navbar />
       
       {/* Hero Section */}
@@ -86,17 +87,17 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
-              Financez l'avenir de l'Algérie
+              {t('hero.title')}
             </h1>
             <p className="text-xl text-primary-light max-w-2xl mx-auto mb-8">
-              Rejoignez la plus grande plateforme de financement participatif dédiée aux entrepreneurs algériens.
+              {t('hero.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link to="/submit-project" className="btn-secondary">
-                Soumettre un projet
+                {t('hero.cta.submit')}
               </Link>
               <Link to="/projects" className="btn-primary">
-                Explorer les projets
+                {t('hero.cta.explore')}
               </Link>
             </div>
           </div>
@@ -106,7 +107,7 @@ const Index = () => {
       {/* Featured Projects Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Projets à la une</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">{t('featured.title')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredProjects.map((project) => (
               <Link
@@ -135,7 +136,7 @@ const Index = () => {
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="font-medium">
-                        {project.currentAmount.toLocaleString()} DA
+                        {project.currentAmount.toLocaleString()} {t('featured.amount')}
                       </span>
                       <span className="text-gray-500">
                         {project.progress}%
@@ -167,7 +168,7 @@ const Index = () => {
       {/* Categories Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Catégories de projets</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">{t('categories.title')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {categories.map((category, index) => (
               <Link
