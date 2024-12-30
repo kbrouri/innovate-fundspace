@@ -6,25 +6,39 @@ import Navbar from "../components/Navbar";
 const featuredProjects = [
   {
     id: "1",
-    title: "Projet Innovation Durable",
-    description: "Une solution innovante pour un avenir durable en Algérie.",
-    category: "Énergies Renouvelables",
-    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b",
-    progress: 50,
-    currentAmount: 2500000,
+    title: "Akoma Earth",
+    description: "Une startup algérienne qui propose des solutions durables et écologiques pour un mode de vie plus responsable.",
+    category: "Développement Durable",
+    image: "https://akoma.earth/wp-content/uploads/2023/09/Akoma-Earth-Logo-1.png",
+    progress: 65,
+    currentAmount: 3250000,
     goalAmount: 5000000,
   },
   {
     id: "2",
-    title: "Artisanat Digital",
-    description: "Fusion entre tradition artisanale et technologie moderne.",
-    category: "Artisanat",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
-    progress: 75,
-    currentAmount: 3750000,
+    title: "City Locker",
+    description: "Service de consignes intelligentes pour le stockage temporaire de colis et bagages en Algérie.",
+    category: "Services Logistiques",
+    image: "https://citylocker-algerie.com/wp-content/uploads/2022/12/logo-city-locker.png",
+    progress: 80,
+    currentAmount: 4000000,
     goalAmount: 5000000,
   },
+  {
+    id: "3",
+    title: "RightNow",
+    description: "Plateforme de livraison express innovante développée par Brenco Algérie.",
+    category: "E-commerce & Logistique",
+    image: "https://rightnow-by-brenco.com/wp-content/uploads/2023/05/logo-rightnow.png",
+    progress: 70,
+    currentAmount: 3500000,
+    goalAmount: 5000000,
+  }
 ];
+
+// ... keep existing code (stats array definition)
+
+// ... keep existing code (categories array definition)
 
 const Index = () => {
   const stats = [
@@ -93,18 +107,20 @@ const Index = () => {
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Projets à la une</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredProjects.map((project) => (
               <Link
                 key={project.id}
                 to={`/projects/${project.id}`}
                 className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
               >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover"
-                />
+                <div className="h-48 w-full relative bg-white p-4">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
                     {project.title}
